@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="heading1">#2C1542</color>
+    <color name="heading2">#432062</color>
+    <color name="statusText">#592A83</color>
+    <color name="button_primary">#7D49AD</color>
+    <color name="button_secondary">#D4C2E4</color>
+    <color name="cred_card_background">#f4eff8</color>
+    <color name="group_card_background">#e9e0f1</color>
+    <color name="heading3">#8C5DB6</color>
+    <color name="divider">#A986C8</color>
+    <color name="toolbar">#F1EBF6</color>
+    <color name="overlay">#AA000000</color>
+    <color name="window_bg">#ffffff</color>
+    <color name="bg_circle_1">#E2D7ED</color>
+    <color name="bg_circle_2">#F1EBF6</color>
+    <color name="dialog">#ffffff</color>
+</resources>

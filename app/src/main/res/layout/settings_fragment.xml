@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/settings_appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@drawable/rounded_collapsible_appbar"
+            android:backgroundTint="@color/toolbar"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:title="@string/settings"
+                app:contentScrim="@android:color/transparent"
+                app:collapsedTitleTextColor="@color/heading1"
+                app:expandedTitleTextColor="@color/heading1"
+                app:collapsedTitleGravity="start"
+                app:expandedTitleGravity="center"
+                app:expandedTitleMargin="20dp"
+                app:expandedTitleTextAppearance="@style/ExpandedAppBar"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                android:id="@+id/settings_appbar">
+
+            <Toolbar
+                    android:id="@+id/settings_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:showDividers="beginning|end|middle"
+                          android:divider="@drawable/empty_tall_divider"
+            >
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal" android:gravity="center_vertical"
+                              android:clickable="true"
+                              android:focusable="true"
+                              android:id="@+id/settings_offline_tile"
+                              android:foreground="?attr/selectableItemBackground">
+                    
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_offline"
+                               android:contentDescription="@string/offline_setting_icon"
+                               android:tint="@color/heading2"
+                               android:scaleType="fitCenter"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="18sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading2"
+                                  android:layout_marginBottom="7dp"
+                                  android:text="@string/offline_mode" tools:targetApi="p"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="13sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading3"
+                                  android:text="@string/offline_mode_desc" tools:targetApi="p"/>
+                    </LinearLayout>
+                    <Switch android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/settings_offline_toggle"
+                            android:thumbTint="@color/heading2"
+                            android:trackTint="@color/heading3"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_margin="20dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal" android:gravity="center_vertical"
+                              android:clickable="true"
+                              android:focusable="true"
+                              android:id="@+id/settings_reset_tile"
+                              android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_change_pass"
+                               android:contentDescription="@string/change_pass_icon"
+                               android:tint="@color/heading2"
+                               android:scaleType="fitCenter"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="18sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading2"
+                                  android:layout_marginBottom="7dp"
+                                  android:text="@string/change_pass" tools:targetApi="p"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="13sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading3"
+                                  android:text="@string/change_pass_desc" tools:targetApi="p"/>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                               android:scaleType="fitCenter"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_right_icon"
+                               android:tint="@color/heading3"
+                               android:contentDescription="@string/right_icon"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal" android:gravity="center_vertical"
+                              android:clickable="true"
+                              android:focusable="true"
+                              android:id="@+id/settings_delete_account_tile"
+                              android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_delete_outline"
+                               android:contentDescription="@string/delete_account_icon"
+                               android:tint="@color/heading2"
+                               android:scaleType="fitCenter"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="18sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading2"
+                                  android:layout_marginBottom="7dp"
+                                  android:text="@string/delete_account" tools:targetApi="p"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="13sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading3"
+                                  android:text="@string/delete_account_desc" tools:targetApi="p"/>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                               android:scaleType="fitCenter"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_right_icon"
+                               android:tint="@color/heading3"
+                               android:contentDescription="@string/right_icon"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal" android:gravity="center_vertical"
+                              android:clickable="true"
+                              android:focusable="true"
+                              android:id="@+id/settings_logout_tile"
+                              android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_logout"
+                               android:contentDescription="@string/logout_icon"
+                               android:tint="@color/heading2"
+                               android:scaleType="fitCenter"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="18sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading2"
+                                  android:layout_marginBottom="7dp"
+                                  android:text="@string/logout" tools:targetApi="p"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="13sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading3"
+                                  android:text="@string/logout_desc" tools:targetApi="p"/>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                               android:scaleType="fitCenter"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_right_icon"
+                               android:tint="@color/heading3"
+                               android:contentDescription="@string/right_icon"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal" android:gravity="center_vertical"
+                              android:clickable="true"
+                              android:focusable="true"
+                              android:id="@+id/settings_github_tile"
+                              android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView android:layout_width="30dp"
+                               android:layout_height="30dp"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_github"
+                               android:contentDescription="@string/github_icon"
+                               android:tint="@color/heading2"
+                               android:scaleType="fitCenter"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="18sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading2"
+                                  android:layout_marginBottom="7dp"
+                                  android:text="@string/github" tools:targetApi="p"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="13sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading3"
+                                  android:text="@string/github_desc" tools:targetApi="p"/>
+                    </LinearLayout>
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                               android:scaleType="fitCenter"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_right_icon"
+                               android:tint="@color/heading3"
+                               android:contentDescription="@string/right_icon"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

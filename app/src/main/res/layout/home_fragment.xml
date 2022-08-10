@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="100dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:gravity="center_vertical"
+                    android:id="@+id/home_search_link"
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp">
+
+                <ImageButton
+                        android:id="@+id/home_search_button"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="15dp"
+                        android:tint="@color/statusText"
+                        android:scaleType="centerInside"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_search"/>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:layout_marginHorizontal="15dp"
+                        android:textAlignment="center"
+                        android:text="@string/search"
+                        android:textColor="@color/statusText"
+                        android:textSize="18sp"
+                        android:textFontWeight="600"
+                        tools:targetApi="p"/>
+
+                <ImageButton
+                        android:id="@+id/home_settings_button"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="15dp"
+                        android:scaleType="centerInside"
+                        android:tint="@color/statusText"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_setting"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/group_recycler_view"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cred_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              android:id="@+id/empty_view_text"
+              android:text="@string/empty_home"
+              android:textAlignment="center"
+              android:layout_margin="20dp"
+              android:textSize="22sp"
+              android:textColor="@color/statusText"
+    />
+
+    <View android:layout_width="match_parent"
+          android:alpha="0"
+          android:visibility="invisible"
+          android:layout_height="match_parent"
+          android:id="@+id/home_bg_overlay"
+          android:clickable="true"
+          android:focusable="true"
+          android:elevation="10dp"
+          android:background="@color/overlay"/>
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintBottom_toTopOf="@id/home_add_cred_layout"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  android:layout_marginEnd="20dp"
+                  android:alpha="0"
+                  android:translationY="125dp"
+                  android:elevation="11dp"
+                  android:id="@+id/home_add_group_layout"
+                  android:gravity="center_vertical"
+                  android:layout_marginBottom="15dp"
+                  android:visibility="invisible">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/add_group"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"
+                  android:layout_marginEnd="15dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                app:fabSize="mini"
+                app:tint="@color/heading2"
+                android:outlineSpotShadowColor="@android:color/transparent"
+                app:backgroundTint="@color/button_secondary"
+                android:contentDescription="@string/add_group"
+                android:id="@+id/home_add_group_fab" tools:targetApi="p"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintBottom_toTopOf="@id/home_add_fab"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  android:layout_marginEnd="20dp"
+                  android:alpha="0"
+                  android:translationY="63dp"
+                  android:elevation="11dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/home_add_cred_layout"
+                  android:layout_marginBottom="15dp"
+                  android:visibility="invisible">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/add_credential"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"
+                  android:layout_marginEnd="15dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                app:tint="@color/heading2"
+                app:fabSize="mini"
+                android:outlineSpotShadowColor="@android:color/transparent"
+                app:backgroundTint="@color/button_secondary"
+                android:id="@+id/home_add_cred_fab"
+                android:contentDescription="@string/add_credential"
+                tools:targetApi="p"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            app:tint="@color/white"
+            app:elevation="11dp"
+            android:id="@+id/home_add_fab"
+            app:backgroundTint="@color/button_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:outlineSpotShadowColor="@android:color/transparent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            tools:targetApi="p" android:contentDescription="@string/add_item"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

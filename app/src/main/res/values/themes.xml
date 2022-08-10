@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Credenager" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/toolbar</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Customize your theme here. -->
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/window_bg</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
+</resources>

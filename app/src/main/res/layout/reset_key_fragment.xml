@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                tools:ignore="UseCompoundDrawables">
+            <LinearLayout
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                <ImageView android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginHorizontal="20dp"
+                           android:layout_marginTop="20dp"
+                           android:scaleType="centerCrop"
+                           android:adjustViewBounds="true"
+                           android:src="@drawable/ic_reset_pass"
+                           android:id="@+id/header_image"
+                           android:contentDescription="@string/reset_image_hint"/>
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="30sp"
+                          android:textFontWeight="600"
+                          android:text="@string/reset_key"
+                          android:textColor="@color/heading1"
+                          android:layout_marginVertical="40dp"
+                          tools:targetApi="p"/>
+            </LinearLayout>
+
+            <EditText
+                    android:autofillHints="password"
+                    android:id="@+id/reset_key_password_edittext"
+                    android:layout_width="fill_parent"
+                    android:paddingVertical="15dp"
+                    android:paddingHorizontal="20dp"
+                    android:hint="@string/current_password_edittext_hint"
+                    android:textColorHint="@color/statusText"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="18sp"
+                    android:inputType="textPassword"
+                    android:textCursorDrawable="@null"
+                    android:textFontWeight="600"
+                    android:maxLines="1"
+                    android:textColor="@color/heading2"
+                    android:background="@drawable/rounded_edittext"
+                    tools:targetApi="p"
+                    android:imeOptions="actionNext"
+                    android:layout_height="wrap_content"/>
+
+            <EditText
+                    android:id="@+id/reset_key_key_edittext"
+                    android:layout_width="match_parent"
+                    android:paddingVertical="15dp"
+                    android:paddingHorizontal="20dp"
+                    android:hint="@string/new_encryption_key_edittext_hint"
+                    android:textColorHint="@color/statusText"
+                    android:layout_marginHorizontal="20dp"
+                    android:textSize="18sp"
+                    android:inputType="textPassword"
+                    android:textCursorDrawable="@null"
+                    android:textFontWeight="600"
+                    android:maxLines="1"
+                    android:textColor="@color/heading2"
+                    android:background="@drawable/rounded_edittext"
+                    tools:targetApi="p"
+                    android:importantForAutofill="no"
+                    android:imeOptions="actionDone"
+                    android:layout_height="wrap_content"/>
+
+            <CheckBox
+                    android:id="@+id/reset_key_confirm_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp"
+                    android:text="@string/reset_key_warning"
+                    android:textColor="@color/statusText"
+                    android:textSize="15sp"
+                    android:textFontWeight="600"
+                    android:checked="false"
+                    android:buttonTint="@color/button_primary"
+                    tools:targetApi="p"
+            />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/reset_key_dialog_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:padding="15dp"
+                    android:text="@string/reset_key"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:backgroundTint="@color/button_primary"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:outlineSpotShadowColor="@android:color/transparent"
+                    android:alpha="0.3"
+                    android:enabled="false"
+                    tools:targetApi="p"
+            />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

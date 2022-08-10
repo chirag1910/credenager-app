@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:id="@+id/search_appBar"
+            android:layout_marginBottom="10dp"
+            android:background="@color/toolbar"
+            app:layout_constraintTop_toTopOf="parent">
+
+    <ImageButton
+            android:id="@+id/search_go_back_button"
+            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:src="@drawable/ic_arrow_left"
+            android:tint="@color/statusText"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:background="@color/toolbar"
+            android:padding="0dp"/>
+
+
+    <EditText
+            android:id="@+id/search_search_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="20dp"
+            android:paddingEnd="20dp"
+            android:hint="@string/search"
+            android:textColorHint="@color/statusText"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:textCursorDrawable="@null"
+            android:textFontWeight="600"
+            android:maxLines="1"
+            android:textColor="@color/heading2"
+            android:focusedByDefault="true"
+            android:background="@color/toolbar"
+            android:drawableEnd="@drawable/ic_search"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/statusText"
+            tools:targetApi="p"
+            android:imeOptions="actionSearch"
+            android:importantForAutofill="no"/>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cred_search_recycler_view"
+            android:layout_width="match_parent"
+            android:paddingVertical="10dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_appBar"/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/search_appBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            android:foregroundGravity="center"
+            android:id="@+id/search_empty_view">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/search_empty_view_text"
+                  android:layout_gravity="center"
+                  android:textAlignment="gravity"
+                  android:layout_margin="20dp"
+                  android:textSize="22sp"
+                  android:textColor="@color/statusText"/>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal" tools:ignore="UseCompoundDrawables">
+            <LinearLayout android:layout_marginTop="70dp"
+                          android:orientation="vertical"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:id="@+id/splash_top">
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginHorizontal="20dp"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginBottom="50dp"
+                       android:scaleType="centerCrop"
+                       android:adjustViewBounds="true"
+                       android:id="@+id/header_image"
+                       android:src="@drawable/ic_welcome"
+                       android:contentDescription="@string/welcome"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textSize="30sp"
+                      android:textFontWeight="600"
+                      android:text="@string/app_name"
+                      android:textColor="@color/heading1"
+                      android:layout_marginBottom="10dp"
+                      tools:targetApi="p"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textSize="15sp"
+                      android:textFontWeight="600"
+                      android:text="@string/tagline"
+                      android:textColor="@color/heading2"
+                      android:layout_marginBottom="50dp"
+                      tools:targetApi="p"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/welcome_page_status"
+                      android:textSize="15sp"
+                      android:text="@string/loading_status"
+                      android:textFontWeight="600"
+                      android:textColor="@color/statusText"
+                      android:layout_marginBottom="20dp"
+                      tools:targetApi="p"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

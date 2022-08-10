@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="heading1">#f6f1f3</color>
+    <color name="heading2">#ede2e7</color>
+    <color name="heading3">#dac5cf</color>
+    <color name="statusText">#c8a8b8</color>
+    <color name="button_primary">#a36e88</color>
+    <color name="button_secondary">#412c36</color>
+    <color name="cred_card_background">#312129</color>
+    <color name="group_card_background">#412c36</color>
+    <color name="divider">#1affffff</color>
+    <color name="toolbar">#30282c</color>
+    <color name="window_bg">#21161b</color>
+    <color name="bg_circle_1">#0fffffff</color>
+    <color name="bg_circle_2">#08ffffff</color>
+    <color name="dialog">#312129</color>
+</resources>

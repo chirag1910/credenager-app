@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_card"
+            android:backgroundTint="@color/cred_card_background">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp">
+            <TextView android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:textSize="16sp"
+                      android:textFontWeight="600"
+                      android:textColor="@color/heading3"
+                      android:id="@+id/cred_search_card_identifier"
+                      tools:targetApi="p"/>
+
+            <Space android:layout_width="15dp"
+                   android:layout_height="match_parent"/>
+
+
+            <ImageButton android:layout_width="20dp"
+                         android:layout_height="20dp"
+                         android:scaleType="centerInside"
+                         android:padding="0dp"
+                         android:background="@android:color/transparent"
+                         android:adjustViewBounds="true"
+                         android:src="@drawable/ic_arrow_right"
+                         android:id="@+id/cred_search_card_goto"
+                         android:contentDescription="@string/cred_card_delete"/>
+        </LinearLayout>
+
+        <ImageView android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:src="@mipmap/divider"
+                   android:scaleType="fitXY"
+                   android:tint="@color/divider"
+                   android:layout_marginHorizontal="20dp"
+                   android:contentDescription="@string/divider"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="25dp">
+            <TextView android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/heading2"
+                      android:id="@+id/cred_search_card_value"
+                      android:textSize="20sp"/>
+
+            <Space android:layout_width="15dp"
+                   android:layout_height="match_parent"/>
+
+            <ImageButton android:layout_width="20dp"
+                         android:layout_height="20dp"
+                         android:src="@drawable/ic_copy"
+                         android:tint="@color/button_primary"
+                         android:background="@android:color/transparent"
+                         android:id="@+id/cred_search_card_copy"
+                         android:contentDescription="@string/cred_card_copy"/>
+            <Space android:layout_width="20dp"
+                   android:layout_height="match_parent"/>
+            <ImageButton android:layout_width="20dp"
+                         android:layout_height="20dp"
+                         android:src="@drawable/ic_show"
+                         android:tint="@color/button_primary"
+                         android:background="@android:color/transparent"
+                         android:id="@+id/cred_search_card_lock"
+                         android:contentDescription="@string/cred_card_lock"/>
+        </LinearLayout>
+
+
+    </LinearLayout>

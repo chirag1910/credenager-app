@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.supercharge.shimmerlayout.ShimmerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/home_skeleton_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_auto_start="true"
+        app:shimmer_angle="0"
+        app:shimmer_animation_duration="2000"
+        app:shimmer_mask_width="1"
+        app:shimmer_color="@color/button_secondary">
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+            <View android:layout_width="match_parent"
+                  android:layout_height="51.8dp"
+                  android:background="@drawable/rounded_edittext"
+                  android:layout_marginHorizontal="20dp"
+                  android:layout_marginVertical="20dp"
+                  android:backgroundTint="@color/cred_card_background"
+            />
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginBottom="20dp">
+                <View android:layout_width="match_parent"
+                      android:layout_height="120dp"
+                      android:layout_weight="1"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/cred_card_background"/>
+
+                <Space android:layout_width="20dp"
+                       android:layout_height="match_parent"/>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="120dp"
+                      android:layout_weight="1"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/cred_card_background"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginBottom="20dp">
+                <View android:layout_width="match_parent"
+                      android:layout_height="120dp"
+                      android:layout_weight="1"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/cred_card_background"/>
+
+                <Space android:layout_width="20dp"
+                       android:layout_height="match_parent"/>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="120dp"
+                      android:layout_weight="1"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@android:color/transparent"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginBottom="20dp"
+                          android:orientation="vertical"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/cred_card_background">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="20dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="15dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/group_card_background"
+                      android:layout_marginHorizontal="20dp"/>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="25dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginBottom="20dp"
+                          android:orientation="vertical"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/cred_card_background">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="20dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="15dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/group_card_background"
+                      android:layout_marginHorizontal="20dp"/>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="25dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginBottom="20dp"
+                          android:orientation="vertical"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/cred_card_background">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="20dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="15dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/group_card_background"
+                      android:layout_marginHorizontal="20dp"/>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="25dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginBottom="20dp"
+                          android:orientation="vertical"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/cred_card_background">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="20dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="15dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="1dp"
+                      android:background="@drawable/rounded_card"
+                      android:backgroundTint="@color/group_card_background"
+                      android:layout_marginHorizontal="20dp"/>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="25dp">
+                    <View android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                    <Space android:layout_width="15dp"
+                           android:layout_height="match_parent"/>
+                    <View android:layout_width="20dp"
+                          android:layout_height="20dp"
+                          android:background="@drawable/rounded_card"
+                          android:backgroundTint="@color/group_card_background"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</io.supercharge.shimmerlayout.ShimmerLayout>
