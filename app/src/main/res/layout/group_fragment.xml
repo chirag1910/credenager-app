@@ -106,7 +106,7 @@
                   android:textSize="22sp"
                   android:text="@string/empty_group"
                   android:layout_gravity="center"
-                  android:textAlignment="gravity"
+                  android:textAlignment="center"
                   android:textColor="@color/statusText"
         />
         </androidx.core.widget.NestedScrollView>

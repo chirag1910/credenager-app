@@ -72,7 +72,7 @@
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/delete_acc_dialog.xml" value="0.24895833333333334" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/group_card.xml" value="0.2105978260869565" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/group_dialog.xml" value="0.2105978260869565" />
-        <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/group_fragment.xml" value="0.1" />
+        <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/group_fragment.xml" value="0.2" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/home_fragment.xml" value="0.2" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/home_skeleton.xml" value="0.176" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/home_skeleton_fragment.xml" value="0.25" />
@@ -84,8 +84,8 @@
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/reset_pass_fragment.xml" value="0.22010869565217392" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/search_fragment.xml" value="0.176" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/settings_fragment.xml" value="0.264" />
-        <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/signup_fragment.xml" value="0.34532374100719426" />
-        <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/splash_fragment.xml" value="0.1381340579710145" />
+        <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/signup_fragment.xml" value="0.28683035714285715" />
+        <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/splash_fragment.xml" value="0.264" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/layout/welcome_fragment.xml" value="0.22826086956521738" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2385" />
         <entry key="..\:/program/project/credenager/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.167" />
