@@ -8,7 +8,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class Api {
-    static String apiUrl = "https://credenager.herokuapp.com/";
+    static String apiUrl = "https://credenager.onrender.com/";
 
     public static void deleteAccount(String jwtToken, String password, String key, ApiResponse response) {
         try {
