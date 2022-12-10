@@ -77,12 +77,8 @@ public class DeleteAccountDialog extends Dialog {
         Api.deleteAccount(Globals.JWT_TOKEN, pass, key, response -> {
             try{
                 if (((Integer) response.get("code")) == 200) {
-                    Globals.setUserState(null, null);
-                    Globals.setToken(getContext(), null);
+                    Globals.clearAll(getContext());
                     Data.dataString = null;
-                    Globals.setData(getContext(), null);
-                    Globals.KEY = null;
-                    Globals.setKey(getContext(), null);
                     new Handler(Looper.getMainLooper()).post(() -> {
                         dismiss();
                         Toast.makeText(getContext(), "Account Deleted!", Toast.LENGTH_LONG).show();

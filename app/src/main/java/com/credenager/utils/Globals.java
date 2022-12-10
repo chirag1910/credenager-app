@@ -13,6 +13,7 @@ public class Globals {
     public static final String AUTH_FILE_NAME = "USER_INFO";
     public static final String SETTINGS_FILE_NAME = "USER_SETTINGS";
     public static final String DATA_FILE_NAME = "USER_DATA";
+    public static final String EMAIL_KEY = "USER_EMAIL";
     public static final String JWT_KEY = "JWT_TOKEN";
     public static final String KEY_KEY = "USER_ENCRYPTION_KEY";
     public static final String OFFLINE_KEY = "OFFLINE_MODE";
@@ -54,6 +55,14 @@ public class Globals {
         USER_EMAIL = email;
     }
 
+    public static void setEmail(Context context, String email){
+        context.getSharedPreferences(AUTH_FILE_NAME, Context.MODE_PRIVATE).edit().putString(EMAIL_KEY, email).apply();
+    }
+
+    public static String getEmail(Context context){
+        return context.getSharedPreferences(AUTH_FILE_NAME, Context.MODE_PRIVATE).getString(EMAIL_KEY, null);
+    }
+
     public static void setToken(Context context, String token){
         context.getSharedPreferences(AUTH_FILE_NAME, Context.MODE_PRIVATE).edit().putString(JWT_KEY, token).apply();
     }
@@ -84,5 +93,14 @@ public class Globals {
 
     public static String getData(Context context) {
         return context.getSharedPreferences(DATA_FILE_NAME, Context.MODE_PRIVATE).getString(DATA_KEY, null);
+    }
+
+    public static void clearAll(Context context) {
+        setToken(context, null);
+        setUserState(null, null);
+        setEmail(context, null);
+        setKey(context, null);
+        setData(context, null);
+        KEY = null;
     }
 }

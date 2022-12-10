@@ -103,6 +103,7 @@ public class LoginPageFragment extends Fragment {
                                 final String token = response.getString("token");
                                 final String email = response.getString("email");
                                 Globals.setToken(requireContext(), token);
+                                Globals.setEmail(requireContext(), email);
                                 Globals.setUserState(email, token);
                                 new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
                             } else {
@@ -148,6 +149,7 @@ public class LoginPageFragment extends Fragment {
                 if (((Integer) response.get("code")) == 200) {
                     final String token =  response.getString("token");
                     Globals.setToken(requireContext(), token);
+                    Globals.setEmail(requireContext(), email);
                     Globals.setUserState(email, token);
                     new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
                 }

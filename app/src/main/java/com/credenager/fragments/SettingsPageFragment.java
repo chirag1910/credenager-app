@@ -92,12 +92,8 @@ public class SettingsPageFragment extends Fragment {
     private void logoutClick(View view) {
         new ConfirmationDialog(requireContext(), "Logout?", "Logout", result -> {
             if (result){
-                Globals.setToken(requireContext(), null);
-                Globals.setUserState(null, null);
-                Globals.KEY = null;
-                Globals.setKey(requireContext(), null);
+                Globals.clearAll(requireContext());
                 Data.dataString = null;
-                Globals.setData(requireContext(), null);
                 goToMainActivity();
             }
         }).show();
