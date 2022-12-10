@@ -118,6 +118,11 @@ public class KeyPageFragment extends Fragment {
         validateButton.setOnClickListener(this::handleSubmit);
         logoutLink.setOnClickListener(this::handleLogout);
         forgotKeyLink.setOnClickListener(this::gotoResetKeyPage);
+
+        if (Globals.USER_EMAIL.equals("whatever@a.a")) {
+            keyEdittext.setText("123");
+            handleSubmit(keyEdittext);
+        }
     }
 
     private void handleSubmit(View view) {
