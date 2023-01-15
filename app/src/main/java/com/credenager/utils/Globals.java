@@ -20,6 +20,7 @@ public class Globals {
     public static final String JWT_KEY = "JWT_TOKEN";
     public static final String USER_KEY_KEY = "USER_ENCRYPTION_KEY";
     public static final String OFFLINE_KEY = "OFFLINE_MODE";
+    public static final String BYPASS_KEY_KEY = "BYPASS_KEY";
     public static final String DATA_KEY = "USER_OFFLINE_DATA";
 
     public static final String LOGIN_FRAGMENT_TAG = "LOGIN_FRAG";
@@ -79,17 +80,22 @@ public class Globals {
         return context.getSharedPreferences(AUTH_FILE_NAME, Context.MODE_PRIVATE).getString(USER_KEY_KEY, null);
     }
 
-    public static void saveSettings(Context context, Boolean allowOffline) {
+    public static void saveSettings(Context context, Boolean allowOffline, Boolean bypassKey) {
         if (allowOffline != null){
             context.getSharedPreferences(SETTINGS_FILE_NAME, Context.MODE_PRIVATE).edit().putBoolean(OFFLINE_KEY, allowOffline).apply();
+        }
+        if (bypassKey != null){
+            context.getSharedPreferences(SETTINGS_FILE_NAME, Context.MODE_PRIVATE).edit().putBoolean(BYPASS_KEY_KEY, bypassKey).apply();
         }
     }
 
     public static HashMap<String, Object> getSettings(Context context) {
         Boolean allowOffline =  context.getSharedPreferences(SETTINGS_FILE_NAME, Context.MODE_PRIVATE).getBoolean(OFFLINE_KEY, false);
+        Boolean bypassKey =  context.getSharedPreferences(SETTINGS_FILE_NAME, Context.MODE_PRIVATE).getBoolean(BYPASS_KEY_KEY, false);
 
         HashMap<String, Object> response = new HashMap<>();
         response.put(OFFLINE_KEY, allowOffline);
+        response.put(BYPASS_KEY_KEY, bypassKey);
 
         return response;
     }

@@ -97,6 +97,46 @@
                               android:orientation="horizontal" android:gravity="center_vertical"
                               android:clickable="true"
                               android:focusable="true"
+                              android:id="@+id/settings_bypass_key_tile"
+                              android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                               android:layout_margin="20dp"
+                               android:src="@drawable/ic_bypass_key"
+                               android:contentDescription="@string/bypass_key_setting_icon"
+                               android:tint="@color/heading2"
+                               android:scaleType="fitCenter"/>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                  android:layout_weight="1"
+                                  android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="18sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading2"
+                                  android:layout_marginBottom="7dp"
+                                  android:text="@string/bypass_key_page" tools:targetApi="p"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                                  android:singleLine="false"
+                                  android:textSize="13sp"
+                                  android:textFontWeight="600"
+                                  android:textColor="@color/heading3"
+                                  android:text="@string/bypass_key_page_desc" tools:targetApi="p"/>
+                    </LinearLayout>
+                    <Switch android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/settings_bypass_key_toggle"
+                            android:thumbTint="@color/heading2"
+                            android:trackTint="@color/heading3"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_margin="20dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal" android:gravity="center_vertical"
+                              android:clickable="true"
+                              android:focusable="true"
                               android:id="@+id/settings_reset_tile"
                               android:foreground="?attr/selectableItemBackground">
 

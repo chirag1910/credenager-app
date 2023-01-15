@@ -68,4 +68,7 @@
     <string name="github_icon">Github Icon</string>
     <string name="github">Github</string>
     <string name="github_desc">View project source code</string>
+    <string name="bypass_key_setting_icon">Bypass Key Setting Icon</string>
+    <string name="bypass_key_page">Bypass Key Page</string>
+    <string name="bypass_key_page_desc">Don\'t ask for the key everytime</string>
 </resources>

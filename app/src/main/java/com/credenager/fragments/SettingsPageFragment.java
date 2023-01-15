@@ -24,9 +24,9 @@ import com.credenager.utils.Globals;
 import java.util.HashMap;
 
 public class SettingsPageFragment extends Fragment {
-    private LinearLayout offlineTile;
-    private Switch offlineToggle;
-    private Boolean offlineMode;
+    private LinearLayout offlineTile, bypassKeyTile;
+    private Switch offlineToggle, bypassKeyToggle;
+    private Boolean offlineMode, bypassKey;
     private HashMap<String, Object> settings;
 
     @Nullable
@@ -41,6 +41,8 @@ public class SettingsPageFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.settings_toolbar);
         offlineToggle = view.findViewById(R.id.settings_offline_toggle);
         offlineTile = view.findViewById(R.id.settings_offline_tile);
+        bypassKeyToggle = view.findViewById(R.id.settings_bypass_key_toggle);
+        bypassKeyTile = view.findViewById(R.id.settings_bypass_key_tile);
         LinearLayout changeTile = view.findViewById(R.id.settings_reset_tile);
         LinearLayout deleteTile = view.findViewById(R.id.settings_delete_account_tile);
         LinearLayout logoutTile = view.findViewById(R.id.settings_logout_tile);
@@ -51,6 +53,7 @@ public class SettingsPageFragment extends Fragment {
         getActivity().getActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left);
 
         offlineTile.setOnClickListener(this::offlineModeClick);
+        bypassKeyTile.setOnClickListener(this::bypassKeyClick);
         changeTile.setOnClickListener(this::changePassClick);
         deleteTile.setOnClickListener(this::deleteAccountClick);
         logoutTile.setOnClickListener(this::logoutClick);
@@ -63,6 +66,8 @@ public class SettingsPageFragment extends Fragment {
         settings = Globals.getSettings(requireContext());
         offlineMode = (Boolean) settings.getOrDefault(Globals.OFFLINE_KEY, false);
         offlineToggle.setChecked(Boolean.TRUE.equals(offlineMode));
+        bypassKey = (Boolean) settings.getOrDefault(Globals.BYPASS_KEY_KEY, false);
+        bypassKeyToggle.setChecked(Boolean.TRUE.equals(bypassKey));
     }
 
     private void offlineModeClick(View view) {
@@ -76,10 +81,20 @@ public class SettingsPageFragment extends Fragment {
             Globals.saveData(requireContext(), null);
         }
 
-        Globals.saveSettings(requireContext(), offlineMode);
+        Globals.saveSettings(requireContext(), offlineMode, null);
         offlineToggle.setChecked(offlineMode);
 
         offlineTile.setEnabled(true);
+    }
+
+    private void bypassKeyClick(View view) {
+        bypassKeyTile.setEnabled(false);
+        bypassKey = !bypassKey;
+
+        Globals.saveSettings(requireContext(), null, bypassKey);
+        bypassKeyToggle.setChecked(bypassKey);
+
+        bypassKeyTile.setEnabled(true);
     }
 
     private void changePassClick(View view) {

@@ -121,6 +121,11 @@ public class KeyPageFragment extends Fragment {
             keyEdittext.setText(Globals.DUMMY_ACCOUNT_KEY);
             handleSubmit(view);
         }
+        Boolean bypassKeyPageSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BYPASS_KEY_KEY, false);
+        if (Boolean.TRUE.equals(bypassKeyPageSetting)) {
+            keyEdittext.setText(Globals.getKey(requireContext()));
+            handleSubmit(view);
+        }
     }
 
     private void handleSubmit(View view) {
