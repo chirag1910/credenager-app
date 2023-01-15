@@ -90,10 +90,4 @@ public class SplashPageFragment extends Fragment {
         view.findViewById(R.id.splash_top).getLocationOnScreen(coordinates);
         requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new WelcomePageFragment(coordinates[0], coordinates[1])).commit();
     }
-
-    private void gotoHomePage() {
-        requireActivity().startActivity(new Intent(requireActivity(), HomeActivity.class));
-        requireActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
-        requireActivity().finish();
-    }
 }

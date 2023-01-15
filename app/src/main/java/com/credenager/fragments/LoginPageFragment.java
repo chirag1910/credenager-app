@@ -67,7 +67,7 @@ public class LoginPageFragment extends Fragment {
                 .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                         .setSupported(true)
                         .setFilterByAuthorizedAccounts(false)
-                        .setServerClientId("274800871089-k8rdu64cfu1uq1n8hcf9tndldmnqhl27.apps.googleusercontent.com")
+                        .setServerClientId(Globals.GOOGLE_CLIENT_ID)
                         .build())
                 .setAutoSelectEnabled(false)
                 .build();
@@ -107,13 +107,7 @@ public class LoginPageFragment extends Fragment {
                                 final String email = response.getString("email");
                                 Globals.saveUserState(requireContext(), email, token);
                                 Session.setUserState(email, token);
-                                if (email.equals(Globals.DUMMY_ACCOUNT_EMAIL)){
-                                    Globals.saveKey(requireContext(), Globals.DUMMY_ACCOUNT_KEY);
-                                    Session.setKey(Globals.DUMMY_ACCOUNT_KEY);
-                                    new Handler(Looper.getMainLooper()).post(this::gotoHomePage);
-                                } else{
-                                    new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
-                                }
+                                new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
                             } else {
                                 String error = response.getString("error");
                                 new Handler(Looper.getMainLooper()).post(() ->
@@ -204,11 +198,5 @@ public class LoginPageFragment extends Fragment {
     private void gotoSignupPage(View view) {
         requireActivity().getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.fragment_container, new SignupPageFragment(), Globals.SIGNUP_FRAGMENT_TAG).commit();
-    }
-
-    private void gotoHomePage() {
-        requireActivity().startActivity(new Intent(requireActivity(), HomeActivity.class));
-        requireActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
-        requireActivity().finish();
     }
 }
