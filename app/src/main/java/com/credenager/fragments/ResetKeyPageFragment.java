@@ -68,6 +68,7 @@ public class ResetKeyPageFragment extends Fragment {
                     new Handler(Looper.getMainLooper()).post(() ->
                             {
                                 Toast.makeText(getContext(), "Key Changed Successfully!", Toast.LENGTH_LONG).show();
+                                Globals.saveKey(requireContext(), key);
                                 gotoKeyPage();
                             }
                     );
