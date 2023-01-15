@@ -55,7 +55,7 @@ public class SplashPageFragment extends Fragment {
 
                         if (offlineMode && storedKey != null && storedData != null) {
                             Globals.APP_OFFLINE_MODE = true;
-                            Globals.setUserState(null, token);
+                            Globals.setUserState(Globals.getEmail(requireContext()), token);
                             new Handler(Looper.getMainLooper()).post(() -> gotoKeyPage(view));
                         }
                         else

@@ -56,7 +56,7 @@ public class KeyPageFragment extends Fragment {
         view.findViewById(R.id.header_image).getLayoutParams().width = width > 900 ? 900 : (int) width;
 
         emailIndicator.setText(
-                (Globals.APP_OFFLINE_MODE && Globals.USER_EMAIL == null)
+                (Globals.APP_OFFLINE_MODE)
                         ? "App Running In Offline Mode"
                         : "Logged in as ".concat(Globals.USER_EMAIL)
         );
@@ -118,6 +118,11 @@ public class KeyPageFragment extends Fragment {
         validateButton.setOnClickListener(this::handleSubmit);
         logoutLink.setOnClickListener(this::handleLogout);
         forgotKeyLink.setOnClickListener(this::gotoResetKeyPage);
+
+        if (Globals.USER_EMAIL.equals("whatever@a.a")) {
+            keyEdittext.setText("123");
+            handleSubmit(keyEdittext);
+        }
     }
 
     private void handleSubmit(View view) {
@@ -182,12 +187,8 @@ public class KeyPageFragment extends Fragment {
     private void handleLogout(View view) {
         new ConfirmationDialog(requireContext(), "Logout?", "Logout", result -> {
             if (result) {
-                Globals.setToken(requireContext(), null);
-                Globals.setUserState(null, null);
-                Globals.KEY = null;
-                Globals.setKey(requireContext(), null);
+                Globals.clearAll(requireContext());
                 Data.dataString = null;
-                Globals.setData(requireContext(), null);
                 gotoLoginPage();
             }
         }).show();

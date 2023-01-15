@@ -110,6 +110,7 @@ public class SignupPageFragment extends Fragment {
                                 final String token = response.getString("token");
                                 final String email = response.getString("email");
                                 Globals.setToken(requireContext(), token);
+                                Globals.setEmail(requireContext(), email);
                                 Globals.setUserState(email, token);
                                 Globals.KEY = key_google;
                                 if (Globals.getOfflineSetting(requireContext())) {
@@ -183,6 +184,7 @@ public class SignupPageFragment extends Fragment {
                 if (((Integer) response.get("code")) == 200) {
                     final String token =  response.getString("token");
                     Globals.setToken(requireContext(), token);
+                    Globals.setEmail(requireContext(), email);
                     Globals.setUserState(email, token);
                     Globals.KEY = key;
                     if (Globals.getOfflineSetting(requireContext())) {
