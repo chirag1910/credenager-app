@@ -17,6 +17,9 @@ import com.credenager.fragments.SearchPageFragment;
 import com.credenager.utils.Api;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
+
+import java.util.HashMap;
 
 public class HomeActivity extends FragmentActivity {
     private ImageView bg;
@@ -60,18 +63,20 @@ public class HomeActivity extends FragmentActivity {
     }
 
     private void getData(){
-        Api.getUser(Globals.JWT_TOKEN, response -> {
+        Api.getUser(Session.JWT_TOKEN, response -> {
             try{
                 int responseCode = response.getInt("code");
                 if (responseCode == 200) {
                     try{
                         final String data = response.getString("data");
                         Data.set(data);
-                        if (Globals.getOfflineSetting(this)) {
-                            Globals.setData(this, Data.dataString);
+
+                        Boolean allowOffline = (Boolean) Globals.getSettings(this).getOrDefault(Globals.OFFLINE_KEY, false);
+                        if (Boolean.TRUE.equals(allowOffline)) {
+                            Globals.saveData(this, Data.dataString);
                         }
                         else {
-                            Globals.setData(this, null);
+                            Globals.saveData(this, null);
                         }
                         new Handler(Looper.getMainLooper()).post(this::gotoHomeFragment);
                     }catch (Exception e){
@@ -83,14 +88,16 @@ public class HomeActivity extends FragmentActivity {
                 else if (responseCode == 502) {
                     String storedData = Globals.getData(this);
 
-                    if (Globals.APP_OFFLINE_MODE) {
-                        try{
-                            Data.set(storedData);
-                            new Handler(Looper.getMainLooper()).post(this::gotoHomeFragment);
-                        }catch (Exception e){
-                            new Handler(Looper.getMainLooper()).post(() ->
-                                    Toast.makeText(this, "Error Parsing Data", Toast.LENGTH_LONG).show()
-                            );
+                    if (Session.APP_OFFLINE_MODE) {
+                        if (storedData != null){
+                            try{
+                                Data.set(storedData);
+                                new Handler(Looper.getMainLooper()).post(this::gotoHomeFragment);
+                            } catch (Exception e){
+                                new Handler(Looper.getMainLooper()).post(() ->
+                                        Toast.makeText(this, "Error Parsing Data", Toast.LENGTH_LONG).show()
+                                );
+                            }
                         }
                     }
                     else{

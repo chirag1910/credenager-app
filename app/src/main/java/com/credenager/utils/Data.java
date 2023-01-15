@@ -40,7 +40,7 @@ public class Data {
                     String credIdentifier = credObj.getString("identifier");
                     String credValue = credObj.getString("value");
 
-                    addCred(credId, credIdentifier, Crypt.decrypt(credValue, Globals.KEY), groupId);
+                    addCred(credId, credIdentifier, Crypt.decrypt(credValue, Session.USER_KEY), groupId);
                 }
             }
             dataString = data;

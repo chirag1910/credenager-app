@@ -23,6 +23,7 @@ import com.credenager.utils.Api;
 import com.credenager.utils.Crypt;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class KeyPageFragment extends Fragment {
@@ -52,13 +53,12 @@ public class KeyPageFragment extends Fragment {
         validateButton = view.findViewById(R.id.key_validate_button);
         forgotKeyLink = view.findViewById(R.id.forgot_key_link);
         logoutLink = view.findViewById(R.id.key_logout_link);
+
         float width = Resources.getSystem().getDisplayMetrics().widthPixels - Globals.dpToPx(40, requireContext());
         view.findViewById(R.id.header_image).getLayoutParams().width = width > 900 ? 900 : (int) width;
 
         emailIndicator.setText(
-                (Globals.APP_OFFLINE_MODE)
-                        ? "App Running In Offline Mode"
-                        : "Logged in as ".concat(Globals.USER_EMAIL)
+                "Logged in as ".concat(Session.USER_EMAIL) + (Session.APP_OFFLINE_MODE ? " - Offline Mode" : "")
         );
 
         if (startY >= 0 && startX >= 0) {
@@ -69,9 +69,7 @@ public class KeyPageFragment extends Fragment {
             keyTop.setVisibility(View.VISIBLE);
             keyTop.animate().setInterpolator(new DecelerateInterpolator()).translationY(0).translationX(0).setListener(new Animator.AnimatorListener() {
                 @Override
-                public void onAnimationStart(Animator animator) {
-
-                }
+                public void onAnimationStart(Animator animator) {}
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -119,9 +117,9 @@ public class KeyPageFragment extends Fragment {
         logoutLink.setOnClickListener(this::handleLogout);
         forgotKeyLink.setOnClickListener(this::gotoResetKeyPage);
 
-        if (Globals.USER_EMAIL.equals("whatever@a.a")) {
-            keyEdittext.setText("123");
-            handleSubmit(keyEdittext);
+        if (Session.USER_EMAIL.equals(Globals.DUMMY_ACCOUNT_EMAIL)){
+            keyEdittext.setText(Globals.DUMMY_ACCOUNT_KEY);
+            handleSubmit(view);
         }
     }
 
@@ -135,25 +133,20 @@ public class KeyPageFragment extends Fragment {
 
         enableButtons(false);
 
-        Api.verifyKey(Globals.JWT_TOKEN, key, response -> {
+        Api.verifyKey(Session.JWT_TOKEN, key, response -> {
             try{
                 int responseCode = response.getInt("code");
                 if (responseCode == 200) {
-                    Globals.KEY = key;
-                    if (Globals.getOfflineSetting(requireContext())) {
-                        Globals.setKey(requireContext(), Crypt.encrypt(Globals.KEY, Globals.KEY));
-                    }
-                    else {
-                        Globals.setKey(requireContext(), null);
-                    }
+                    Globals.saveKey(requireContext(), key);
+                    Session.setKey(key);
                     new Handler(Looper.getMainLooper()).post(this::gotoHomePage);
                 }
                 else if (responseCode == 502) {
                     String storedKey = Globals.getKey(requireContext());
 
-                    if (Globals.APP_OFFLINE_MODE) {
-                        if (Crypt.decrypt(storedKey, key).equals(key)) {
-                            Globals.KEY = key;
+                    if (Session.APP_OFFLINE_MODE) {
+                        if (storedKey.equals(key)) {
+                            Session.setKey(key);
                             new Handler(Looper.getMainLooper()).post(this::gotoHomePage);
                         }
                         else {
@@ -187,8 +180,7 @@ public class KeyPageFragment extends Fragment {
     private void handleLogout(View view) {
         new ConfirmationDialog(requireContext(), "Logout?", "Logout", result -> {
             if (result) {
-                Globals.clearAll(requireContext());
-                Data.dataString = null;
+                Globals.logout(requireContext());
                 gotoLoginPage();
             }
         }).show();

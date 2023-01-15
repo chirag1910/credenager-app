@@ -19,6 +19,7 @@ import com.credenager.interfaces.DialogResponse;
 import com.credenager.utils.Api;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class DeleteAccountDialog extends Dialog {
@@ -74,11 +75,10 @@ public class DeleteAccountDialog extends Dialog {
 
         enableButtons(false, false);
 
-        Api.deleteAccount(Globals.JWT_TOKEN, pass, key, response -> {
+        Api.deleteAccount(Session.JWT_TOKEN, pass, key, response -> {
             try{
                 if (((Integer) response.get("code")) == 200) {
-                    Globals.clearAll(getContext());
-                    Data.dataString = null;
+                    Globals.logout(getContext());
                     new Handler(Looper.getMainLooper()).post(() -> {
                         dismiss();
                         Toast.makeText(getContext(), "Account Deleted!", Toast.LENGTH_LONG).show();

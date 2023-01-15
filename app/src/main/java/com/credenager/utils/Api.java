@@ -268,7 +268,7 @@ public class Api {
                 JSONObject defaultResponse = new JSONObject();
                 defaultResponse.put("status", "error");
                 defaultResponse.put("code", 502);
-                defaultResponse.put("error", Globals.APP_OFFLINE_MODE ? "No Internet Connection" : "Some error occurred, please try again later");
+                defaultResponse.put("error", Session.APP_OFFLINE_MODE ? "No Internet Connection" : "Some error occurred, please try again later");
                 return defaultResponse;
             }
             catch (Exception e1) {

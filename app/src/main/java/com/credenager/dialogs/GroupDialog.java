@@ -19,6 +19,7 @@ import com.credenager.interfaces.DialogResponse;
 import com.credenager.utils.Api;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class GroupDialog extends Dialog {
@@ -89,7 +90,7 @@ public class GroupDialog extends Dialog {
         enableButtons(false);
 
         if (id == null){
-            Api.addGroup(Globals.JWT_TOKEN, name, response -> {
+            Api.addGroup(Session.JWT_TOKEN, name, response -> {
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         String groupId = response.getString("_id");
@@ -113,7 +114,7 @@ public class GroupDialog extends Dialog {
                 new Handler(Looper.getMainLooper()).post(()->enableButtons(true));
             });
         }else{
-            Api.updateGroup(Globals.JWT_TOKEN, id, name, response -> {
+            Api.updateGroup(Session.JWT_TOKEN, id, name, response -> {
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         Data.updateGroup(id, name);

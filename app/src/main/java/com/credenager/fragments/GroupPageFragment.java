@@ -22,6 +22,7 @@ import com.credenager.dialogs.GroupDialog;
 import com.credenager.utils.Api;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -120,7 +121,7 @@ public class GroupPageFragment extends Fragment {
                     if (result){
                         enableButtons(false);
 
-                        Api.deleteGroup(Globals.JWT_TOKEN, groupId, response -> {
+                        Api.deleteGroup(Session.JWT_TOKEN, groupId, response -> {
                             try {
                                 if (((Integer) response.get("code")) == 200) {
                                     Data.deleteGroup(groupId);

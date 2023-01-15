@@ -21,6 +21,7 @@ import com.credenager.models.Credential;
 import com.credenager.utils.Api;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 
 import java.util.HashMap;
 
@@ -138,7 +139,7 @@ class CredItem extends RecyclerView.ViewHolder{
                             if (result) {
                                 enableButtons(false);
 
-                                Api.deleteCred(Globals.JWT_TOKEN, credential.getCredId(), response -> {
+                                Api.deleteCred(Session.JWT_TOKEN, credential.getCredId(), response -> {
                                     try {
                                         if (((Integer) response.get("code")) == 200) {
                                             Data.deleteCred(credential.getCredId());

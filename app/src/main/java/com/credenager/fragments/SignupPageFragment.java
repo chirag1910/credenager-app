@@ -19,11 +19,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.credenager.HomeActivity;
 import com.credenager.utils.Crypt;
+import com.credenager.utils.Session;
 import com.google.android.gms.auth.api.identity.*;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.credenager.R;
 import com.credenager.utils.Api;
 import com.credenager.utils.Globals;
+
+import java.util.HashMap;
 
 public class SignupPageFragment extends Fragment {
     private CheckBox keySameAsPass;
@@ -31,6 +34,7 @@ public class SignupPageFragment extends Fragment {
     private ExtendedFloatingActionButton submitButton, googleButton;
     private SignInClient oneTapClient;
     private String key_google;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class SignupPageFragment extends Fragment {
         key2Edittext = view.findViewById(R.id.signup_key2_edittext);
         submitButton = view.findViewById(R.id.signup_submit_button);
         googleButton = view.findViewById(R.id.signup_google_button);
+
         float width = Resources.getSystem().getDisplayMetrics().widthPixels - Globals.dpToPx(40, requireContext());
         view.findViewById(R.id.header_image).getLayoutParams().width = width > 900 ? 900 : (int) width;
 
@@ -71,7 +76,7 @@ public class SignupPageFragment extends Fragment {
                 .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                         .setSupported(true)
                         .setFilterByAuthorizedAccounts(false)
-                        .setServerClientId("274800871089-k8rdu64cfu1uq1n8hcf9tndldmnqhl27.apps.googleusercontent.com")
+                        .setServerClientId(Globals.GOOGLE_CLIENT_ID)
                         .build())
                 .setAutoSelectEnabled(false)
                 .build();
@@ -109,16 +114,11 @@ public class SignupPageFragment extends Fragment {
                             if (((Integer) response.get("code")) == 200) {
                                 final String token = response.getString("token");
                                 final String email = response.getString("email");
-                                Globals.setToken(requireContext(), token);
-                                Globals.setEmail(requireContext(), email);
-                                Globals.setUserState(email, token);
-                                Globals.KEY = key_google;
-                                if (Globals.getOfflineSetting(requireContext())) {
-                                    Globals.setKey(requireContext(), Crypt.encrypt(Globals.KEY, Globals.KEY));
-                                }
-                                else {
-                                    Globals.setKey(requireContext(), null);
-                                }
+                                Globals.saveUserState(requireContext(), email, token);
+                                Globals.saveKey(requireContext(), key_google);
+                                Session.setUserState(email, token);
+                                Session.setKey(key_google);
+
                                 new Handler(Looper.getMainLooper()).post(this::gotoHomePage);
                             } else {
                                 String error = response.getString("error");
@@ -183,16 +183,10 @@ public class SignupPageFragment extends Fragment {
             try{
                 if (((Integer) response.get("code")) == 200) {
                     final String token =  response.getString("token");
-                    Globals.setToken(requireContext(), token);
-                    Globals.setEmail(requireContext(), email);
-                    Globals.setUserState(email, token);
-                    Globals.KEY = key;
-                    if (Globals.getOfflineSetting(requireContext())) {
-                        Globals.setKey(requireContext(), Crypt.encrypt(Globals.KEY, Globals.KEY));
-                    }
-                    else {
-                        Globals.setKey(requireContext(), null);
-                    }
+                    Globals.saveUserState(requireContext(), email, token);
+                    Globals.saveKey(requireContext(), key);
+                    Session.setUserState(email, token);
+                    Session.setKey(key);
                     new Handler(Looper.getMainLooper()).post(this::gotoHomePage);
                 }
                 else{

@@ -20,6 +20,7 @@ import com.credenager.utils.Api;
 import com.credenager.utils.Crypt;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.HashMap;
@@ -103,7 +104,7 @@ public class CredentialDialog extends Dialog {
         enableButtons(false);
 
         if (id == null){
-            Api.addCred(Globals.JWT_TOKEN, groupId, identifier, Crypt.encrypt(value, Globals.KEY), response -> {
+            Api.addCred(Session.JWT_TOKEN, groupId, identifier, Crypt.encrypt(value, Session.USER_KEY), response -> {
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         String credId = response.getString("_id");
@@ -128,7 +129,7 @@ public class CredentialDialog extends Dialog {
                 new Handler(Looper.getMainLooper()).post(()->enableButtons(true));
             });
         }else{
-            Api.updateCred(Globals.JWT_TOKEN, id, identifier, Crypt.encrypt(value, Globals.KEY), response -> {
+            Api.updateCred(Session.JWT_TOKEN, id, identifier, Crypt.encrypt(value, Session.USER_KEY), response -> {
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         Data.updateCred(id, identifier, value);

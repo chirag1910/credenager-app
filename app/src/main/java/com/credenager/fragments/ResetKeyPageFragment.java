@@ -1,5 +1,6 @@
 package com.credenager.fragments;
 
+import android.app.appsearch.GlobalSearchSession;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.credenager.R;
 import com.credenager.utils.Api;
@@ -60,7 +62,7 @@ public class ResetKeyPageFragment extends Fragment {
 
         enableButtons(false, false);
 
-        Api.resetKey(Globals.JWT_TOKEN, password, key, response -> {
+        Api.resetKey(Session.JWT_TOKEN, password, key, response -> {
             try{
                 if (((Integer) response.get("code")) == 200) {
                     new Handler(Looper.getMainLooper()).post(() ->

@@ -16,7 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.credenager.HomeActivity;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
@@ -102,10 +105,15 @@ public class LoginPageFragment extends Fragment {
                             if (((Integer) response.get("code")) == 200) {
                                 final String token = response.getString("token");
                                 final String email = response.getString("email");
-                                Globals.setToken(requireContext(), token);
-                                Globals.setEmail(requireContext(), email);
-                                Globals.setUserState(email, token);
-                                new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
+                                Globals.saveUserState(requireContext(), email, token);
+                                Session.setUserState(email, token);
+                                if (email.equals(Globals.DUMMY_ACCOUNT_EMAIL)){
+                                    Globals.saveKey(requireContext(), Globals.DUMMY_ACCOUNT_KEY);
+                                    Session.setKey(Globals.DUMMY_ACCOUNT_KEY);
+                                    new Handler(Looper.getMainLooper()).post(this::gotoHomePage);
+                                } else{
+                                    new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
+                                }
                             } else {
                                 String error = response.getString("error");
                                 new Handler(Looper.getMainLooper()).post(() ->
@@ -148,9 +156,8 @@ public class LoginPageFragment extends Fragment {
             try{
                 if (((Integer) response.get("code")) == 200) {
                     final String token =  response.getString("token");
-                    Globals.setToken(requireContext(), token);
-                    Globals.setEmail(requireContext(), email);
-                    Globals.setUserState(email, token);
+                    Globals.saveUserState(requireContext(), email, token);
+                    Session.setUserState(email, token);
                     new Handler(Looper.getMainLooper()).post(this::gotoKeyPage);
                 }
                 else{
@@ -197,5 +204,11 @@ public class LoginPageFragment extends Fragment {
     private void gotoSignupPage(View view) {
         requireActivity().getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.fragment_container, new SignupPageFragment(), Globals.SIGNUP_FRAGMENT_TAG).commit();
+    }
+
+    private void gotoHomePage() {
+        requireActivity().startActivity(new Intent(requireActivity(), HomeActivity.class));
+        requireActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
+        requireActivity().finish();
     }
 }

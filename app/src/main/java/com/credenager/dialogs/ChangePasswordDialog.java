@@ -17,6 +17,7 @@ import com.credenager.R;
 import com.credenager.interfaces.DialogResponse;
 import com.credenager.utils.Api;
 import com.credenager.utils.Globals;
+import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class ChangePasswordDialog extends Dialog {
@@ -68,7 +69,7 @@ public class ChangePasswordDialog extends Dialog {
         }
 
         enableButtons(false);
-        Api.changePassword(Globals.JWT_TOKEN, oldPass, newPass, response -> {
+        Api.changePassword(Session.JWT_TOKEN, oldPass, newPass, response -> {
             try{
                 if (((Integer) response.get("code")) == 200) {
                     new Handler(Looper.getMainLooper()).post(() -> {

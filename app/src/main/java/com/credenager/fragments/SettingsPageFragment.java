@@ -21,10 +21,13 @@ import com.credenager.utils.Crypt;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
 
+import java.util.HashMap;
+
 public class SettingsPageFragment extends Fragment {
     private LinearLayout offlineTile;
     private Switch offlineToggle;
-    private boolean offlineMode;
+    private Boolean offlineMode;
+    private HashMap<String, Object> settings;
 
     @Nullable
     @Override
@@ -57,25 +60,23 @@ public class SettingsPageFragment extends Fragment {
     }
 
     private void loadSettings() {
-        offlineMode = Globals.getOfflineSetting(requireContext());
-        offlineToggle.setChecked(offlineMode);
+        settings = Globals.getSettings(requireContext());
+        offlineMode = (Boolean) settings.getOrDefault(Globals.OFFLINE_KEY, false);
+        offlineToggle.setChecked(Boolean.TRUE.equals(offlineMode));
     }
 
     private void offlineModeClick(View view) {
         offlineTile.setEnabled(false);
-
         offlineMode = !offlineMode;
 
         if (offlineMode) {
-            Globals.setKey(requireContext(), Crypt.encrypt(Globals.KEY, Globals.KEY));
-            Globals.setData(requireContext(), Data.dataString);
+            Globals.saveData(requireContext(), Data.dataString);
         }
         else {
-            Globals.setKey(requireContext(), null);
-            Globals.setData(requireContext(), null);
+            Globals.saveData(requireContext(), null);
         }
 
-        Globals.setOfflineSetting(requireContext(), offlineMode);
+        Globals.saveSettings(requireContext(), offlineMode);
         offlineToggle.setChecked(offlineMode);
 
         offlineTile.setEnabled(true);
@@ -92,8 +93,7 @@ public class SettingsPageFragment extends Fragment {
     private void logoutClick(View view) {
         new ConfirmationDialog(requireContext(), "Logout?", "Logout", result -> {
             if (result){
-                Globals.clearAll(requireContext());
-                Data.dataString = null;
+                Globals.logout(requireContext());
                 goToMainActivity();
             }
         }).show();
