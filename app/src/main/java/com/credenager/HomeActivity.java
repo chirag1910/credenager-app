@@ -19,8 +19,6 @@ import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
 import com.credenager.utils.Session;
 
-import java.util.HashMap;
-
 public class HomeActivity extends FragmentActivity {
     private ImageView bg;
     @Override

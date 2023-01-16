@@ -164,6 +164,7 @@ public class KeyPageFragment extends Fragment {
                         .setTitle("Authenticate")
                         .setSubtitle("Authenticate using your biometric credential")
                         .setNegativeButtonText("Use key instead?")
+                        .setConfirmationRequired(false)
                         .build();
 
                 showBiometricPrompt(biometricPrompt, promptInfo, 0);
