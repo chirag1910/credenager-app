@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,17 +18,15 @@ import com.credenager.R;
 import com.credenager.dialogs.ChangePasswordDialog;
 import com.credenager.dialogs.ConfirmationDialog;
 import com.credenager.dialogs.DeleteAccountDialog;
-import com.credenager.utils.Crypt;
 import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
 
 import java.util.HashMap;
 
 public class SettingsPageFragment extends Fragment {
-    private LinearLayout offlineTile, bypassKeyTile;
-    private Switch offlineToggle, bypassKeyToggle;
-    private Boolean offlineMode, bypassKey;
-    private HashMap<String, Object> settings;
+    private LinearLayout offlineTile, bypassKeyTile, biometricTile;
+    private Switch offlineToggle, bypassKeyToggle, biometricToggle;
+    private Boolean offlineMode, bypassKey, biometric;
 
     @Nullable
     @Override
@@ -43,6 +42,8 @@ public class SettingsPageFragment extends Fragment {
         offlineTile = view.findViewById(R.id.settings_offline_tile);
         bypassKeyToggle = view.findViewById(R.id.settings_bypass_key_toggle);
         bypassKeyTile = view.findViewById(R.id.settings_bypass_key_tile);
+        biometricToggle = view.findViewById(R.id.settings_biometric_toggle);
+        biometricTile = view.findViewById(R.id.settings_biometric_tile);
         LinearLayout changeTile = view.findViewById(R.id.settings_reset_tile);
         LinearLayout deleteTile = view.findViewById(R.id.settings_delete_account_tile);
         LinearLayout logoutTile = view.findViewById(R.id.settings_logout_tile);
@@ -59,15 +60,33 @@ public class SettingsPageFragment extends Fragment {
         logoutTile.setOnClickListener(this::logoutClick);
         githubTile.setOnClickListener(this::githubClick);
 
+        handleBiometricInit();
         loadSettings();
     }
 
     private void loadSettings() {
-        settings = Globals.getSettings(requireContext());
+        HashMap<String, Object> settings = Globals.getSettings(requireContext());
         offlineMode = (Boolean) settings.getOrDefault(Globals.OFFLINE_KEY, false);
         offlineToggle.setChecked(Boolean.TRUE.equals(offlineMode));
+        biometric = (Boolean) settings.getOrDefault(Globals.BIOMETRIC_KEY, false);
+        biometricToggle.setChecked(Boolean.TRUE.equals(biometric));
         bypassKey = (Boolean) settings.getOrDefault(Globals.BYPASS_KEY_KEY, false);
         bypassKeyToggle.setChecked(Boolean.TRUE.equals(bypassKey));
+    }
+
+    private void handleBiometricInit() {
+        int biometricStatus = Globals.getBiometricStatus(requireContext());
+        if(biometricStatus == 0 || biometricStatus == 1) {
+            biometricTile.setVisibility(View.VISIBLE);
+            biometricTile.setOnClickListener((view) -> biometricClick(biometricStatus));
+        }
+        if (biometricStatus == 0){
+            biometricTile.setAlpha(0.5f);
+            biometricTile.setEnabled(false);
+        }
+        if (biometricStatus != 1) {
+            Globals.saveSettings(requireContext(), null, null, false);
+        }
     }
 
     private void offlineModeClick(View view) {
@@ -81,17 +100,31 @@ public class SettingsPageFragment extends Fragment {
             Globals.saveData(requireContext(), null);
         }
 
-        Globals.saveSettings(requireContext(), offlineMode, null);
+        Globals.saveSettings(requireContext(), offlineMode, null, null);
         offlineToggle.setChecked(offlineMode);
 
         offlineTile.setEnabled(true);
+    }
+
+    private void biometricClick(int biometricStatus){
+        if (biometricStatus == 1){
+            biometricTile.setEnabled(false);
+            biometric = !biometric;
+
+            Globals.saveSettings(requireContext(), null, null, biometric);
+            biometricToggle.setChecked(biometric);
+
+            biometricTile.setEnabled(true);
+        } else{
+            Toast.makeText(requireContext(), "No Biometric is registered on the device!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void bypassKeyClick(View view) {
         bypassKeyTile.setEnabled(false);
         bypassKey = !bypassKey;
 
-        Globals.saveSettings(requireContext(), null, bypassKey);
+        Globals.saveSettings(requireContext(), null, bypassKey, null);
         bypassKeyToggle.setChecked(bypassKey);
 
         bypassKeyTile.setEnabled(true);

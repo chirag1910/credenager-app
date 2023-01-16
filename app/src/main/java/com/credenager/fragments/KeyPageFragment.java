@@ -15,16 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.credenager.HomeActivity;
 import com.credenager.R;
 import com.credenager.dialogs.ConfirmationDialog;
 import com.credenager.utils.Api;
-import com.credenager.utils.Crypt;
-import com.credenager.utils.Data;
 import com.credenager.utils.Globals;
 import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
+import java.util.concurrent.Executor;
 
 public class KeyPageFragment extends Fragment {
     private final float startX, startY;
@@ -117,14 +119,65 @@ public class KeyPageFragment extends Fragment {
         logoutLink.setOnClickListener(this::handleLogout);
         forgotKeyLink.setOnClickListener(this::gotoResetKeyPage);
 
+        checkRelatedSettings(view);
+    }
+
+    private void checkRelatedSettings(View view){
+        String userKey = Globals.getKey(requireContext());
+        Boolean bypassKeyPageSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BYPASS_KEY_KEY, false);
+        Boolean biometricSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BIOMETRIC_KEY, false);
+
         if (Session.USER_EMAIL.equals(Globals.DUMMY_ACCOUNT_EMAIL)){
             keyEdittext.setText(Globals.DUMMY_ACCOUNT_KEY);
             handleSubmit(view);
+        } else if (userKey != null) {
+            if (Boolean.TRUE.equals(bypassKeyPageSetting)) {
+                keyEdittext.setText(userKey);
+                handleSubmit(view);
+            } else if (Boolean.TRUE.equals(biometricSetting)) {
+                Executor executor = ContextCompat.getMainExecutor(requireContext());
+
+                BiometricPrompt biometricPrompt = new BiometricPrompt(requireActivity(), executor, new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                        super.onAuthenticationError(errorCode, errString);
+                        if (errorCode != BiometricPrompt.ERROR_USER_CANCELED && errorCode != BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                            Toast.makeText(requireContext(), "Biometric authentication failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        keyEdittext.setText(userKey);
+                        handleSubmit(view);
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        super.onAuthenticationFailed();
+                        Toast.makeText(requireContext(), "Biometric authentication failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle("Authenticate")
+                        .setSubtitle("Authenticate using your biometric credential")
+                        .setNegativeButtonText("Use key instead?")
+                        .build();
+
+                showBiometricPrompt(biometricPrompt, promptInfo, 0);
+            }
         }
-        Boolean bypassKeyPageSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BYPASS_KEY_KEY, false);
-        if (Boolean.TRUE.equals(bypassKeyPageSetting)) {
-            keyEdittext.setText(Globals.getKey(requireContext()));
-            handleSubmit(view);
+    }
+
+    private void showBiometricPrompt(BiometricPrompt biometricPrompt, BiometricPrompt.PromptInfo promptInfo, int iteration){
+        if (iteration < 10){
+            try{
+                biometricPrompt.authenticate(promptInfo);
+            } catch (Exception e){
+                new Handler().postDelayed(() -> showBiometricPrompt(biometricPrompt, promptInfo, iteration+1), 100);
+            }
         }
     }
 
