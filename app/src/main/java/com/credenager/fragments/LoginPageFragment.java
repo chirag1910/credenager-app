@@ -184,7 +184,7 @@ public class LoginPageFragment extends Fragment {
 
     private void gotoResetPassPage(View view) {
         requireActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_from_right, R.anim.exit_from_left)
-                .replace(R.id.fragment_container, new ResetPassPageFragment(), Globals.RESET_PASS_FRAGMENT_TAG).commit();
+                .replace(R.id.fragment_container, new ResetPassPageFragment(emailEdittext.getText().toString()), Globals.RESET_PASS_FRAGMENT_TAG).commit();
     }
 
     private void gotoKeyPage() {

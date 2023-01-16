@@ -22,7 +22,11 @@ public class ResetPassPageFragment extends Fragment {
     private EditText emailEdittext, otpEdittext, passwordEdittext;
     private ExtendedFloatingActionButton submitButton;
     private boolean otpSent = false;
+    private final String emailAutoFill;
 
+    public ResetPassPageFragment(String emailAutoFill){
+        this.emailAutoFill = emailAutoFill;
+    }
 
     @Nullable
     @Override
@@ -44,6 +48,8 @@ public class ResetPassPageFragment extends Fragment {
 
         submitButton.setOnClickListener(this::handleSubmit);
         loginInsteadLink.setOnClickListener(this::gotoLoginPage);
+
+        emailEdittext.setText(emailAutoFill);
     }
 
     private void handleSubmit(View view) {
