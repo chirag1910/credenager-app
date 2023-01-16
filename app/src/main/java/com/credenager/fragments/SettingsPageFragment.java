@@ -82,7 +82,6 @@ public class SettingsPageFragment extends Fragment {
         }
         if (biometricStatus == 0){
             biometricTile.setAlpha(0.5f);
-            biometricTile.setEnabled(false);
         }
         if (biometricStatus != 1) {
             Globals.saveSettings(requireContext(), null, null, false);

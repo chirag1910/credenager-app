@@ -14,7 +14,6 @@ public class SettingsActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        setRequestedOrientation(getResources().getConfiguration().orientation);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsPageFragment()).commit();
     }
 
