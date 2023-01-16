@@ -90,6 +90,10 @@ public class GroupPageFragment extends Fragment {
 
         checkEmptyView();
         checkScroll();
+
+        if (groupId == null){
+            menuFab.setVisibility(View.GONE);
+        }
     }
     public void checkEmptyView() {
         if (credAdapter.getItemCount() == 0) {
