@@ -193,6 +193,8 @@ public class KeyPageFragment extends Fragment {
         enableButtons(false);
 
         Api.verifyKey(Session.JWT_TOKEN, key, response -> {
+            if (getContext() == null) return;
+
             try{
                 int responseCode = response.getInt("code");
                 if (responseCode == 200) {

@@ -110,6 +110,8 @@ public class SignupPageFragment extends Fragment {
                     enableButtons(false);
 
                     Api.signupGoogle(key_google, idToken, response -> {
+                        if (getContext() == null) return;
+
                         try {
                             if (((Integer) response.get("code")) == 200) {
                                 final String token = response.getString("token");
@@ -180,6 +182,8 @@ public class SignupPageFragment extends Fragment {
         enableButtons(false);
 
         Api.signup(email, password, key, response -> {
+            if (getContext() == null) return;
+
             try{
                 if (((Integer) response.get("code")) == 200) {
                     final String token =  response.getString("token");

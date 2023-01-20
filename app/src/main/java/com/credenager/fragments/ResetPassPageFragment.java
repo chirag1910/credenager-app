@@ -64,6 +64,8 @@ public class ResetPassPageFragment extends Fragment {
 
         if(!otpSent){
             Api.resetPassInit(email, response -> {
+                if (getContext() == null) return;
+
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         new Handler(Looper.getMainLooper()).post(this::setOtpSent);
@@ -102,6 +104,8 @@ public class ResetPassPageFragment extends Fragment {
             }
 
             Api.resetPass(email, otp, password, response -> {
+                if (getContext() == null) return;
+
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         new Handler(Looper.getMainLooper()).post(() -> {

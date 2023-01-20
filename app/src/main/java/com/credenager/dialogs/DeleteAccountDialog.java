@@ -76,6 +76,8 @@ public class DeleteAccountDialog extends Dialog {
         enableButtons(false, false);
 
         Api.deleteAccount(Session.JWT_TOKEN, pass, key, response -> {
+            if (getContext() == null) return;
+
             try{
                 if (((Integer) response.get("code")) == 200) {
                     Globals.logout(getContext());

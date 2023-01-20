@@ -63,6 +63,8 @@ public class ResetKeyPageFragment extends Fragment {
         enableButtons(false, false);
 
         Api.resetKey(Session.JWT_TOKEN, password, key, response -> {
+            if (getContext() == null) return;
+
             try{
                 if (((Integer) response.get("code")) == 200) {
                     new Handler(Looper.getMainLooper()).post(() ->

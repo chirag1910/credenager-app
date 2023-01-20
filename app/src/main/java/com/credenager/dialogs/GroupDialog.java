@@ -91,6 +91,8 @@ public class GroupDialog extends Dialog {
 
         if (id == null){
             Api.addGroup(Session.JWT_TOKEN, name, response -> {
+                if (getContext() == null) return;
+
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         String groupId = response.getString("_id");
@@ -115,6 +117,8 @@ public class GroupDialog extends Dialog {
             });
         }else{
             Api.updateGroup(Session.JWT_TOKEN, id, name, response -> {
+                if (getContext() == null) return;
+
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         Data.updateGroup(id, name);

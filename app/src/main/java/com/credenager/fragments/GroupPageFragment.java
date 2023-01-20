@@ -126,6 +126,8 @@ public class GroupPageFragment extends Fragment {
                         enableButtons(false);
 
                         Api.deleteGroup(Session.JWT_TOKEN, groupId, response -> {
+                            if (getContext() == null) return;
+
                             try {
                                 if (((Integer) response.get("code")) == 200) {
                                     Data.deleteGroup(groupId);

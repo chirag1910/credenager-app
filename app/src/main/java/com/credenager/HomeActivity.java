@@ -61,6 +61,8 @@ public class HomeActivity extends FragmentActivity {
 
     private void getData(){
         Api.getUser(Session.JWT_TOKEN, response -> {
+            if (HomeActivity.this == null) return;
+
             try{
                 int responseCode = response.getInt("code");
                 if (responseCode == 200) {

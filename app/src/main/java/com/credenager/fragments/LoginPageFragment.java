@@ -100,6 +100,8 @@ public class LoginPageFragment extends Fragment {
                     enableButtons(false);
 
                     Api.loginGoogle(idToken, response -> {
+                        if (getContext() == null) return;
+
                         try {
                             if (((Integer) response.get("code")) == 200) {
                                 final String token = response.getString("token");
@@ -146,6 +148,8 @@ public class LoginPageFragment extends Fragment {
         enableButtons(false);
 
         Api.login(email, password, response -> {
+            if (getContext() == null) return;
+
             try{
                 if (((Integer) response.get("code")) == 200) {
                     final String token =  response.getString("token");

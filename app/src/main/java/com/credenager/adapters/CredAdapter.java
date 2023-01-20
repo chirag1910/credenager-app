@@ -140,6 +140,8 @@ class CredItem extends RecyclerView.ViewHolder{
                                 enableButtons(false);
 
                                 Api.deleteCred(Session.JWT_TOKEN, credential.getCredId(), response -> {
+                                    if (itemView.getContext() == null) return;
+                                    
                                     try {
                                         if (((Integer) response.get("code")) == 200) {
                                             Data.deleteCred(credential.getCredId());

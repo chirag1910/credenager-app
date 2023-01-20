@@ -105,6 +105,8 @@ public class CredentialDialog extends Dialog {
 
         if (id == null){
             Api.addCred(Session.JWT_TOKEN, groupId, identifier, Crypt.encrypt(value, Session.USER_KEY), response -> {
+                if (getContext() == null) return;
+
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         String credId = response.getString("_id");
@@ -130,6 +132,8 @@ public class CredentialDialog extends Dialog {
             });
         }else{
             Api.updateCred(Session.JWT_TOKEN, id, identifier, Crypt.encrypt(value, Session.USER_KEY), response -> {
+                if (getContext() == null) return;
+
                 try{
                     if (((Integer) response.get("code")) == 200) {
                         Data.updateCred(id, identifier, value);

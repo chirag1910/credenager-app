@@ -49,6 +49,8 @@ public class SplashPageFragment extends Fragment {
             status.setText("Verifying User...");
 
             Api.getUserBasic(token, response -> {
+                if (getContext() == null) return;
+
                 try {
                     int responseCode = response.getInt("code");
                     if (responseCode == 200) {
