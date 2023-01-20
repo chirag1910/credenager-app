@@ -70,8 +70,8 @@
     <string name="github_desc">View project source code</string>
     <string name="bypass_key_setting_icon">Bypass Key Setting Icon</string>
     <string name="bypass_key_page">Bypass Key Page</string>
-    <string name="bypass_key_page_desc">Don\'t ask for the key everytime</string>
+    <string name="bypass_key_page_desc">Only ask for the key periodically</string>
     <string name="biometric_setting_icon">Biometric Setting icon</string>
     <string name="allow_biometric_authentication">Allow Biometric Authentication</string>
-    <string name="allow_biometric_authentication_desc">Allow biometric authentication on key page</string>
+    <string name="allow_biometric_authentication_desc">Allow biometric authentication on the key page; Will ask for the key periodically</string>
 </resources>

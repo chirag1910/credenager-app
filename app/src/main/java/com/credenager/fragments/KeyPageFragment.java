@@ -13,11 +13,13 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import com.credenager.HomeActivity;
 import com.credenager.R;
 import com.credenager.dialogs.ConfirmationDialog;
@@ -26,6 +28,7 @@ import com.credenager.utils.Globals;
 import com.credenager.utils.Session;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.util.Calendar;
 import java.util.concurrent.Executor;
 
 public class KeyPageFragment extends Fragment {
@@ -115,7 +118,7 @@ public class KeyPageFragment extends Fragment {
             logoutLink.setVisibility(View.VISIBLE);
         }
 
-        validateButton.setOnClickListener(this::handleSubmit);
+        validateButton.setOnClickListener((v) -> handleSubmit(v, false));
         logoutLink.setOnClickListener(this::handleLogout);
         forgotKeyLink.setOnClickListener(this::gotoResetKeyPage);
 
@@ -124,16 +127,18 @@ public class KeyPageFragment extends Fragment {
 
     private void checkRelatedSettings(View view){
         String userKey = Globals.getKey(requireContext());
-        Boolean bypassKeyPageSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BYPASS_KEY_KEY, false);
-        Boolean biometricSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BIOMETRIC_KEY, false);
+        long timeLimit = Globals.getAutomaticUnlockTimeout(requireContext());
 
         if (Session.USER_EMAIL.equals(Globals.DUMMY_ACCOUNT_EMAIL)){
             keyEdittext.setText(Globals.DUMMY_ACCOUNT_KEY);
-            handleSubmit(view);
-        } else if (userKey != null) {
+            handleSubmit(view, true);
+        } else if (userKey != null && timeLimit > Calendar.getInstance().getTimeInMillis()) {
+            Boolean bypassKeyPageSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BYPASS_KEY_KEY, false);
+            Boolean biometricSetting = (Boolean) Globals.getSettings(requireContext()).getOrDefault(Globals.BIOMETRIC_KEY, false);
+
             if (Boolean.TRUE.equals(bypassKeyPageSetting)) {
                 keyEdittext.setText(userKey);
-                handleSubmit(view);
+                handleSubmit(view, true);
             } else if (Boolean.TRUE.equals(biometricSetting)) {
                 Executor executor = ContextCompat.getMainExecutor(requireContext());
 
@@ -150,7 +155,7 @@ public class KeyPageFragment extends Fragment {
                     public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
                         keyEdittext.setText(userKey);
-                        handleSubmit(view);
+                        handleSubmit(view, true);
                     }
 
                     @Override
@@ -182,7 +187,7 @@ public class KeyPageFragment extends Fragment {
         }
     }
 
-    private void handleSubmit(View view) {
+    private void handleSubmit(View view, boolean automatic) {
         final String key = keyEdittext.getText().toString();
 
         if (key.isEmpty()){
@@ -198,6 +203,8 @@ public class KeyPageFragment extends Fragment {
             try{
                 int responseCode = response.getInt("code");
                 if (responseCode == 200) {
+                    if (!automatic) Globals.saveAutomaticUnlockValue(requireContext());
+
                     Globals.saveKey(requireContext(), key);
                     Session.setKey(key);
                     new Handler(Looper.getMainLooper()).post(this::gotoHomePage);

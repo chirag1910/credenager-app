@@ -2,7 +2,6 @@ package com.credenager.utils;
 
 import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG;
 import static androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK;
-import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,8 +11,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.biometric.BiometricManager;
 
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +20,7 @@ public class Globals {
     public static final String AUTH_FILE_NAME = "USER_INFO";
     public static final String SETTINGS_FILE_NAME = "USER_SETTINGS";
     public static final String DATA_FILE_NAME = "USER_DATA";
+    public static final String MISC_FILE_NAME = "MISC_DATA";
 
     public static final String EMAIL_KEY = "USER_EMAIL";
     public static final String JWT_KEY = "JWT_TOKEN";
@@ -29,6 +29,7 @@ public class Globals {
     public static final String BIOMETRIC_KEY = "BIOMETRIC_MODE";
     public static final String BYPASS_KEY_KEY = "BYPASS_KEY";
     public static final String DATA_KEY = "USER_OFFLINE_DATA";
+    public static final String AUTOMATIC_UNLOCK_TIMEOUT_KEY = "AUTOMATIC_UNLOCK_TIMEOUT";
 
     public static final String LOGIN_FRAGMENT_TAG = "LOGIN_FRAG";
     public static final String SIGNUP_FRAGMENT_TAG = "SIGNUP_FRAG";
@@ -43,6 +44,8 @@ public class Globals {
 
     public static final String DUMMY_ACCOUNT_EMAIL = "whatever@a.a";
     public static final String DUMMY_ACCOUNT_KEY = "123";
+
+    public static final long AUTOMATIC_UNLOCK_TIMEOUT = 3 * 24 * 60 * 60 * 1000;
 
     public static boolean isValidEmail(String email){
         Pattern pattern = Pattern.compile("^(.+)@(.+)$");
@@ -130,6 +133,15 @@ public class Globals {
 
     public static String getData(Context context) {
         return context.getSharedPreferences(DATA_FILE_NAME, Context.MODE_PRIVATE).getString(DATA_KEY, null);
+    }
+
+    public static void saveAutomaticUnlockValue(Context context){
+        long timeLimit = Calendar.getInstance().getTimeInMillis() + AUTOMATIC_UNLOCK_TIMEOUT;
+        context.getSharedPreferences(MISC_FILE_NAME, Context.MODE_PRIVATE).edit().putLong(AUTOMATIC_UNLOCK_TIMEOUT_KEY, timeLimit).apply();
+    }
+
+    public static long getAutomaticUnlockTimeout(Context context){
+        return context.getSharedPreferences(MISC_FILE_NAME, Context.MODE_PRIVATE).getLong(AUTOMATIC_UNLOCK_TIMEOUT_KEY, 0);
     }
 
     public static void logout(Context context) {
