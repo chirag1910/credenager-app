@@ -4,6 +4,7 @@ import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -38,6 +39,11 @@ public class HomeActivity extends FragmentActivity {
             bg = findViewById(R.id.app_bg);
             setBg();
         }
+
+        if (hasFocus)
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        else
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     private void setBg() {
